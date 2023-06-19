@@ -1,7 +1,7 @@
 Conclusion
 ==========
 
-Thank you for your participation in the F5 Distributed Cloud Lab.
+Thank you for your participation in this F5 Distributed Cloud Lab.
 This Lab Guide has highlighted how attendees can leverage F5 Distributed 
 Cloud security to protect hosted applications and resources.
 

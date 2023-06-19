@@ -137,7 +137,7 @@ Your next goal is to simply establish routing between these environments by usin
 **All traffic between these networks will now be routed through auto-provisioned, self-healing and encrypted tunnels between the defined Customer Edges and the XC Regional Edges.**
 
 
-.. Note:: In this lab some objects are already created due to permission requirements in the XC Lab environment. You will still observe and walkthrough the configuration for referrence. 
+.. Note:: In this lab some objects are already created due to permission requirements in the XC Lab environment. You will still observe and walkthrough the configuration for reference. 
 
 
 Global Virtual Network  
@@ -362,7 +362,7 @@ Next, push the keyboard "up arrow " and run the same command but targeted at por
 
 |
 
-.. Important:: If you are not getting a **"200 OK"** repsponse, please see a lab assistant before moving on. 
+.. Important:: If you are not getting a **"200 OK"** response, please see a lab assistant before moving on. 
 
 
 
@@ -383,7 +383,7 @@ Navigate to **Manage >> Firewall >> Enhanced Firewall Policies** and click **Add
 =========================================    =====
 Variable                                     Value
 =========================================    =====
-Name                                         [animal-name]-fwp
+Name                                         <animal-name>-fwp
 Select Enhanced Firewall Policy Rule Type    Custom Enhanced Firewall Policy Rule Selection
 =========================================    =====
 
@@ -402,7 +402,7 @@ Click on **Add Item** to bring up the Rules creation screen. Here you will notic
 =================================               =====
 Variable                                        Value
 =================================               =====
-Name                                            [animal-name]-allow-80
+Name                                            <animal-name>-allow-80
 Source Traffic Filter                           IPv4 Prefix List >> Click Configure and add 10.1.1.0/24 then click **Apply**.
 Destination Traffic Filter                      IPv4 Prefix List >> Click Configure and add 10.0.3.0/24 then click **Apply**.
 Select Type of Traffic to Match                 Match Protocol and Port Ranges
@@ -432,7 +432,7 @@ Click **Add Item** again to add another rule to the **Enhanced Firewall Policy**
 =================================               =====
 Variable                                        Value
 =================================               =====
-Name                                            [animal-name]-deny-all
+Name                                            <animal-name>-deny-all
 Source Traffic Filter                           IPv4 Prefix List >> Click Configure and add 10.1.1.0/24 then click **Apply**.
 Destination Traffic Filter                      IPv4 Prefix List >> Click Configure and add 10.0.3.0/24 then click **Apply**.
 Select Type of Traffic to Match                 Match All Traffic

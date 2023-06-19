@@ -29,8 +29,8 @@ You can also select it from the left drop-down menu.
    ================================= =====
    Variable                          Value
    ================================= =====
-   Name                              <namespace-cdn>
-   Domains                           <namespace-cdn.lab-sec.f5demos.com>
+   Name                              <namespace>-cdn
+   Domains                           <namespace>-cdn.lab-sec.f5demos.com
    ================================= =====
 	 
        .. image:: _static/lab6-004.PNG
@@ -87,7 +87,7 @@ You can also select it from the left drop-down menu.
      
       .. image:: _static/lab6-012.PNG
 
-#. Once the CDN Distribution is active you can launch a new browser window and navigate to <namespace-cdn.lab-sec.f5demos.com
+#. Once the CDN Distribution is active you can launch a new browser window and navigate to <namespace>-cdn.lab-sec.f5demos.com
 
    Note: It may take 1-2 minutes before the site loads
  
@@ -103,7 +103,7 @@ You can also select it from the left drop-down menu.
 
 #. Now you will see monitoring/performance statistics within the F5XC dashboard. 
 
-#. Naviate to the Monitoring > Performance section within the CDN configuration. Then select the CDN Distribution you just created (namespace-cdn).
+#. Naviate to the Monitoring > Performance section within the CDN configuration. Then select the CDN Distribution you just created, <namespace>-cdn.
 
      .. image:: _static/lab6-015.PNG
     
@@ -119,7 +119,7 @@ You can also select it from the left drop-down menu.
 
    An origin pull occurs anytime the CDN server needs to pass a request to the origin server. This typically occurs on a cache miss. On an origin pull, the CDN will cache the content contained in the origin server's response. Subsequent requests for the same content will result in a cache hit and lower latency for end users.
 
-#. You will notice a series of 'Misses' after refreshing the page serveral times. The reason the requests are identified as 'misses' is due to the 'Cache-Control' headers that are being injected into the request/resonse and origin caching. Distributed Cloud CDN allows you to configure advanced "Header Controls' and additional 'Cache Options'. 
+#. You will notice a series of 'Misses' after refreshing the page serveral times. The reason the requests are identified as 'misses' is due to the 'Cache-Control' headers that are being injected into the request/response and origin caching. Distributed Cloud CDN allows you to configure advanced "Header Controls' and additional 'Cache Options'. 
 
 #. Lets go back into the CDN Distribution configuration by navigating to Manage > Distributions. 
 

@@ -34,7 +34,7 @@ L7 App Routing
 **Adding Layer 7 App Routing with F5 Distributed Cloud is a simple task,** but one thing we haven't done yet is configure an **internal pool** for the **AWS workload**. So far, we have been pointing at a public DNS name in the AWS Origin pool, so that could in theory, change or resolve to different IP's/AZ's, at different times. 
 What we essentially want is a static proxy into the AWS environment that this one particular frontend is located in, which is also where our CE Node is deployed.
 
-In the **Side menu** under **Manage** click on **Load Balancers** >> **Origin Pools** and click **Manage Configuration** under the **3 Button** Action Menu on your **[animal-name]-azure-pool**. 
+In the **Side menu** under **Manage** click on **Load Balancers** >> **Origin Pools** and click **Manage Configuration** under the **3 Button** Action Menu on your **<animal-name>-azure-pool**. 
 
 Cick **Clone Object**.
 
@@ -44,7 +44,7 @@ Cick **Clone Object**.
 
 |
 
-For the name call it: **[animal-name]-aws-internal** and click the pencil **edit** icon next to the **Origin Server**. 
+For the name call it: **<animal-name>-aws-internal** and click the pencil **edit** icon next to the **Origin Server**. 
 
 |
 
@@ -104,7 +104,7 @@ HTTP Method                             GET
 Path Match                              Prefix
 Prefix                                  /aws
 Headers                                 Leave Default
-Origin Pools                            **Add Item** >> Origin Pool = **[animal-name]-aws-internal**, Click **Apply**.
+Origin Pools                            **Add Item** >> Origin Pool = **<animal-name>-aws-internal**, Click **Apply**.
 Host Rewrite Method                     Disable Host Rewrite
 ==================================      ==============
 
@@ -120,7 +120,7 @@ HTTP Method                             GET
 Path Match                              Prefix
 Prefix                                  /azure
 Headers                                 Leave Default
-Origin Pools                            **Add Item** >> Origin Pool = **[animal-name]-azure-pool**, Click **Apply**.
+Origin Pools                            **Add Item** >> Origin Pool = **<animal-name>-azure-pool**, Click **Apply**.
 Host Rewrite Method                     Disable Host Rewrite
 ==================================      ==============
 
@@ -136,7 +136,7 @@ Click **Apply**, **Apply**, **Save and Exit**.
 Testing L7 Routing
 --------------------
 
-In your browser open a new tab to: **http://[animal-name]-acme-frontend.lab-mcn.f5demos.com**
+In your browser open a new tab to: **http://<animal-name>-acme-frontend.lab-mcn.f5demos.com**
 
 Once you have loaded the site sucessfully, try adding the URI **/aws** and reload the page. 
 
@@ -163,7 +163,7 @@ So, how do we know for certain which workload was actually answering and this wa
 
 Back in XC Console, from the **Side menu** under **Virtual Hosts**, click on **HTTP Load Balancers**. 
 
-Click on **Performance Monitoring** under your **[animal-name-acme-frontend]** and then click the **Requests** tab (top middle).
+Click on **Performance Monitoring** under your **<animal-name>-acme-frontend** and then click the **Requests** tab (top middle).
 
 .. Note:: Remember to click refresh and adjust time-frame as necessary. 
 
@@ -199,11 +199,11 @@ With **F5 Distributed Cloud App Connect**, adding a WAF policy is just as easy a
 Testing Vulnerabilities
 ------------------------
 
-For a SQL Injection (SQLi) attack, run the following command from your "Online Diag Tool". If you closed or lost that tab, the link is: **http://[animal-name]-awstool.lab-mcn.f5demos.com**
+For a SQL Injection (SQLi) attack, run the following command from your "Online Diag Tool". If you closed or lost that tab, the link is: **http://<animal-name>-awstool.lab-mcn.f5demos.com**
 
 SQLi::
 
-    curl -A "Mozilla/5.0', (select*from(select(sleep(20)))a)) #" http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/ --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -A "Mozilla/5.0', (select*from(select(sleep(20)))a)) #" http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/ --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 
 |
@@ -217,11 +217,11 @@ For some various other attacks you can modify the command and URI as shown below
 
 Other Attack Samples::
 
-    curl -X GET "http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/?cmd=cat%20/etc/passwd" --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -X GET "http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/?cmd=cat%20/etc/passwd" --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 Or::
     
-    curl -X GET "http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/product?id=4%20OR%201=1" --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -X GET "http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/product?id=4%20OR%201=1" --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 
 Here are the URI paths from above for easy reference: 
@@ -241,13 +241,13 @@ Now that you've confirmed that the application is indeed vulnerable to these typ
 Applying WAF 
 ---------------
 
-Back in XC Console, from the **Side menu** under **Manage**, click on **Load Balancers**, **HTTP Load Balancers** >> Actions >> **Manage Configuration** for the **[animal-name]-acme-frontend**. 
+Back in XC Console, from the **Side menu** under **Manage**, click on **Load Balancers**, **HTTP Load Balancers** >> Actions >> **Manage Configuration** for the **<animal-name>-acme-frontend**. 
 
 Click **Edit Configuration** and scroll down to the **Web Application Firewall** section. In the dropdown choose **Enable**
 
 Under **Enable**, click **Add Item**. 
 
-For a name, call it your **[animal-name]-waf** and set the **Enforcement Mode** to blocking. Leave all others **default** and click **Continue**. 
+For a name, call it your **<animal-name>-waf** and set the **Enforcement Mode** to blocking. Leave all others **default** and click **Continue**. 
 
 |
 
@@ -268,11 +268,11 @@ Click **Save and Exit**.
 Testing Vulnerabilities with WAF 
 ----------------------------------
 
-For the SQL Injection (SQLi) attack, run the following command from your "Online Diag Tool". If you closed or lost that tab, the link is: **http://[animal-name]-awstool.lab-mcn.f5demos.com**
+For the SQL Injection (SQLi) attack, run the following command from your "Online Diag Tool". If you closed or lost that tab, the link is: **http://<animal-name>-awstool.lab-mcn.f5demos.com**
 
 SQLi::
 
-    curl -A "Mozilla/5.0', (select*from(select(sleep(20)))a)) #" http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/ --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -A "Mozilla/5.0', (select*from(select(sleep(20)))a)) #" http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/ --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 
 |
@@ -285,11 +285,11 @@ For some various other attacks you can modify the command and URI as shown below
 
 Other Attack Samples::
 
-    curl -X GET "http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/?cmd=cat%20/etc/passwd" --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -X GET "http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/?cmd=cat%20/etc/passwd" --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 Or::
     
-    curl -X GET "http://[animal-name]-acme-frontend.lab-mcn.f5demos.com/product?id=4%20OR%201=1" --resolve [animal-name]-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
+    curl -X GET "http://<animal-name>-acme-frontend.lab-mcn.f5demos.com/product?id=4%20OR%201=1" --resolve <animal-name>-acme-frontend.lab-mcn.f5demos.com:80:159.60.128.61
 
 |
 
@@ -304,7 +304,7 @@ In this final section, we will review the WAF logs for the attacks we just teste
 
 Back in XC Console, from the **Side menu** under **Virtual Hosts**, click on **HTTP Load Balancers**. 
 
-Click on **Security Monitoring** under your **[animal-name-acme-frontend]** and then click the **Security Events** tab (top middle).
+Click on **Security Monitoring** under your **<animal-name>-acme-frontend** and then click the **Security Events** tab (top middle).
 
 |
 

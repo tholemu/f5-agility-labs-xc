@@ -77,18 +77,17 @@ We will first create an Origin Pool that refers to the "Private Endpoint" site i
 
 13. After returning to the prior window, note the values of **Timeout(s)**, **Interval(s)**,   
 
-**Unhealthy Threshold**, and **Healthy Threshold**.                                      
-
-14. Click **Continue**.                                                                      
+**Unhealthy Threshold**, and **Healthy Threshold**.
 
 .. note::                                                                                    
-
 
 *The Timeout, Interval, Unhealthy Threshold, and Healthy Threshold control how often*     
 
 *health checks are sent and when an endpoint is marked healthy or unhealthy.  These*      
 
-*values can be modified to meet the requirements of the application.*                     
+*values can be modified to meet the requirements of the application.*
+
+14. Click **Continue**.                                                                                    
 
 
 15. After returning to the Origin Pool configuration window, click **Save and Exit**.        
@@ -134,7 +133,7 @@ Exercise 1: HTTP Load Balancer Configuration
 
    .. image:: _static/screenshot-global-vip-edit-config.png
 
-#. Under "Origins" find your previous "<namespace>-pool" Origin pool and click on the three dots "..." to the right under "Actions" and select "Edit"
+#. Under "Origins" find your previous "<namespace>-pool" Origin pool and click on the pencil icon to the right under "Actions" and select "Edit"
 
    .. image:: _static/screenshot-global-vip-edit-config-pools.png
 
@@ -289,9 +288,7 @@ You can verify that you are connecting directly to AWS by comparing the DNS of t
 
 In this topology we are sending traffic to the AWS EIP that's attached to the AppMesh node in the AWS VPC.
 
-We then connect to the AWS resource via it's Private IP address.  
-
-<! Try adding the following to the URL "?cat%20/etc/passwd".  ###this request hung without providing a blocking page>
+We then connect to the AWS resource via it's Private IP address.
 
 Try adding the following to the URL "/cart?search=aaa’><script>prompt(‘Please+enter+your+password’);</script>"
 
@@ -299,7 +296,6 @@ You should see a block page.  This is similar behavior to what we saw in the pre
 but in this case the enforcement of the WAF policy is occurring on the AppMesh node
 that is deployed in the AWS Lab Environment and not in the F5 Distributed Cloud Regional Edge.
 
-In the next lab we will look at how to customize our WAF policy.
 
 Video Walkthrough 
 ^^^^^^^^^^^^^^^^^

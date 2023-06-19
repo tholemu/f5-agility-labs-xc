@@ -3,13 +3,13 @@ Lab 3: Globally Available Front End
 
 **Objective:**
 
-* Use XC Regional Edges to provide future-proof, globally available frontend.
+* Use XC Regional Edges to provide future-proof, globally-available frontend
 
-* XC frontend (RE) must be able to load balance the 2 cloud frontends. 
+* XC frontend (RE) must be able to load balance the 2 cloud frontends
 
-* Expose Azure private frontend without adding a public IP for the workload. 
+* Expose Azure private frontend without adding a public IP for the workload
 
-* Always prefer the AWS frontend for ingress traffic. 
+* Always prefer the AWS frontend for ingress traffic
 
 **What they want:**
 
@@ -24,7 +24,7 @@ Lately, the site has been getting pounded with attack traffic and frontend secur
 You think to yourself, this is going to be tricky, and reach out to your trusted F5 Solutions Engineer to see how this will work with Distributed Cloud. 
 
 Your F5 Solutions Engineer explains that IP overlap between sites is a common problem and one that can be easily solved with Distributed Cloud App Connect. 
-App Connect alleviates this problem by leveraging the XC Nodes as Software-Defined Proxies rather than Software-Defined Routers as they were configured with Network Connect. Additionally App Connect enforces a default deny architecture, where only the port and domain name defined on the load balancer will accept traffic. 
+App Connect alleviates this problem by leveraging the XC Nodes as Software-Defined Proxies rather than Software-Defined Routers as they were configured with Network Connect. Additionally, App Connect enforces a default deny architecture, where only the port and domain name defined on the load balancer will accept traffic. 
 
 Also, you are informed that by using F5 Distributed Cloud Regional Edges for the frontend workloads, you will be able to have full proxy security, visibility and analytics for the client traffic, so the Security team will be pleased. 
 
@@ -32,7 +32,7 @@ After reviewing the architecture with you, your Solutions Engineer advises you t
 
 **Deliverable 1:**
 
-Create a globally scaled and future-proof frontend with the XC Regional Edges **(Lab 3)**
+Create a globally-scaled and future-proof frontend with the XC Regional Edges **(Lab 3)**
 
 |
 
@@ -42,7 +42,7 @@ Create a globally scaled and future-proof frontend with the XC Regional Edges **
 
 **Deliverable 2:**
 
-Leverage App Connect for secure site to site connectivity regardless of IP overlap. **(Lab 4)**
+Leverage App Connect for secure site-to-site connectivity regardless of IP overlap. **(Lab 4)**
 
 |
 
@@ -67,7 +67,7 @@ What does this really mean?
 
 With **Network Connect** you connected routed networks with your CE Node which acted as a Software-Defined Router. 
 
-Now with **App Connect** you will be configuring our Regional Edges and your CE Nodes as Sofware-Defined-Proxies to provide connectivity between workloads. The CE's can do both functions simultaneously!!  
+Now with **App Connect** you will be configuring our Regional Edges and your CE Nodes as Sofware-Defined Proxies to provide connectivity between workloads. The CEs can do both functions simultaneously!!  
 
 In the **Side menu** under **Manage** click on **Load Balancers** >> **Origin Pools** and click the **Add Origin Pool** button. 
 
@@ -86,7 +86,7 @@ Enter the following Values:
 ==============================  =====
 Variable                        Value
 ==============================  =====
-Name                            animal-name-aws-pool
+Name                            <animal-name>-aws-pool
 Origin Server Port              80
 Origin Servers                  See Below 
 Health Checks                   See Below 
@@ -98,7 +98,7 @@ In the dropdown keep:  **Public DNS Name of Origin Server** and type: **public.l
 
 **Health Checks:** Under "Health Check object" click the **Select Item*** dropdown and click **Add Item**. 
 
-For the Name use: **[animal-name]-http** and take the rest as defaults. 
+For the Name use: **<animal-name>-http** and take the rest as defaults. 
 
 Click **Continue**
 
@@ -129,10 +129,10 @@ Click the **Add Origin Pool** button at the top the screen.
 ==============================  =====
 Variable                        Value
 ==============================  =====
-Name                            animal-name-azure-pool
+Name                            <animal-name>-azure-pool
 Origin Server Port              80
 Origin Servers                  See Below 
-Health Checks                   [animal-name]-http
+Health Checks                   <animal-name>-http
 ==============================  =====
 
 **Origin Servers:** 
@@ -169,8 +169,8 @@ In the **Side menu** under **Manage** click on **Load Balancers** >> **HTTP Load
 ==================================    =====
 Variable                              Value
 ==================================    =====
-Name                                  animal-name-acme-frontend
-Domains and LB Type                   animal-name-acme-frontend.lab-mcn.f5demos.com
+Name                                  <animal-name>-acme-frontend
+Domains and LB Type                   <animal-name>-acme-frontend.lab-mcn.f5demos.com
 Load Balancer Type                    HTTP
 Automatically Manage DNS Records      **check**
 HTTP Port                             80
@@ -197,7 +197,7 @@ Click **Add Item** again and under "Origin Pool" select the **Azure pool** with 
 
 |
 
-Click **Apply** and you should now be back to the **HTTP Load Balancer** configuration screen which should look like this. 
+Click **Apply** and you should now be back to the **HTTP Load Balancer** configuration screen, which should look like this:
 
 |
 
@@ -221,7 +221,7 @@ Testing
 
 Go ahead and open up a **Command Prompt** or **Terminal** on your personal machine and type the following command: 
 
-**nslookup [animal-name]-acme-frontend.lab-mcn.f5demos.com** and note the IP address that is returned. 
+**nslookup <animal-name>-acme-frontend.lab-mcn.f5demos.com** and note the IP address that is returned. 
 
 In my example, I am using a terminal on MAC and my animal-name was **rested-tiger**.
 
@@ -233,7 +233,7 @@ In my example, I am using a terminal on MAC and my animal-name was **rested-tige
 
 |
 
-Now open up a new tab in your browser and try http://[animal-name]-acme-frontend.lab-mcn.f5demos.com
+Now open up a new tab in your browser and try http://<animal-name>-acme-frontend.lab-mcn.f5demos.com
 
 If you reached this page, you set it up right! Nice work. 
 
@@ -263,7 +263,7 @@ Under **TLS**, hit the dropdown and choose **Enable** and click **Save and Exit*
 
 **Check it out....**
 
-Go back to your browser tab that you had open to http://[animal-name]-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
+Go back to your browser tab that you had open to http://<animal-name>-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
 
 |
 
@@ -281,7 +281,7 @@ Go back to XC Console and edit the AWS pool again to disable TLS and bring the A
 
 Click **Save and Exit**.
 
-Go back to your browser tab that you had open to http://[animal-name]-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
+Go back to your browser tab that you had open to http://<animal-name>-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
 
 .. note:: If you receive a 503 error, please wait a moment and [Shift + Refresh] your browser.
 
@@ -297,11 +297,11 @@ You should be back to the AWS page now.
   **Testing Load Balancing**
 
   Although this isn't an ACME requirement at the moment, you decide to test an Active/Active pool configuration. 
-  Currrently, you have a Global frontend [http://animal-name-acme-frontend.lab-mcn.f5demos.com] that points to a pool with a public EC2 workload in AWS and a pool with a private IP workload in Azure sitting behind the CE.
+  Currrently, you have a Global frontend [http://<animal-name>-acme-frontend.lab-mcn.f5demos.com] that points to a pool with a public EC2 workload in AWS and a pool with a private IP workload in Azure sitting behind the CE.
   You are configured for Active/Standby load-balancing of the pools due to the priority setting in the pool. 
 
 
-  In **XC Console**, navigate to **Manage >> HTTP Load Balancers**,  click on the **3 Button** Actions Menu and choose **Manage Configuration** for your **[animal-name]-acme-frontend**. 
+  In **XC Console**, navigate to **Manage >> HTTP Load Balancers**,  click on the **3 Button** Actions Menu and choose **Manage Configuration** for your **<animal-name>-acme-frontend**. 
 
   Click **Edit Configuration** in the upper right and then click the **pencil/edit** icon next to the Azure Origin Pool. 
 
@@ -313,7 +313,7 @@ You should be back to the AWS page now.
 
   Change the priority to **1**, click **Apply** and **Save and Exit**.
 
-  Go back to your browser tab that you had open to http://[animal-name]-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
+  Go back to your browser tab that you had open to http://<animal-name>-frontend.lab-mcn.f5demos.com and hit **[Shift + Refresh]**.
 
 
   |
@@ -329,7 +329,7 @@ Now that we've sent several requests to our shiny new **Globally Available Front
 
 In **XC Console** >> **Multi-Cloud App Connect** >> **Virtual Hosts** click on **HTTP Load Balancers**. 
 
-Click directly on your **[animal-name-acme-frontend]**.
+Click directly on your **<animal-name>-acme-frontend]**.
 
 |
 

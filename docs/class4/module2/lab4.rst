@@ -39,8 +39,8 @@ Enter the following values:
 ==================================      ==============
 Variable                                Value
 ==================================      ==============
-Name                                    [animal-name]-backend-vip-to-azure
-Domains and LB Type                     [animal-name]-backend-vip-to-azure.lab-mcn.f5demos.com
+Name                                    <animal-name>-backend-vip-to-azure
+Domains and LB Type                     <animal-name>-backend-vip-to-azure.lab-mcn.f5demos.com
 Load Balancer Type                      HTTP
 Automatically Manage DNS Records        **uncheck**
 HTTP Port                               80
@@ -88,7 +88,7 @@ Variable                          Value
 ==============================    =========================================================
 Select Where to Advertise         Site
 Site Network                      Outside Network (Since we only have 1 interface on our CE Node, it is "Outside" by default)
-Site Reference                    system/[animal-name]
+Site Reference                    system/<animal-name>
 TCP Listen Port Choice            TCP Listen Port
 TCP Listen Port                   80
 ==============================    =========================================================
@@ -136,7 +136,7 @@ We will now use a tool to help test this with a built-in "resolve" function.
 
 From the Ubuntu Client **Web Shell** browser tab, type or paste the following command **(with your animal-name)** and hit **Enter**.::
 
-    curl --head http://[animal-name]-backend-vip-to-azure.lab-mcn.f5demos.com --resolve [animal-name]-backend-vip-to-azure.lab-mcn.f5demos.com:80:10.1.1.5
+    curl --head http://<animal-name>-backend-vip-to-azure.lab-mcn.f5demos.com --resolve <animal-name>-backend-vip-to-azure.lab-mcn.f5demos.com:80:10.1.1.5
 
 .. note:: On a MAC you should be able to [CMD + v] and on a PC [Shift + Insert] to paste into the web shell. 
 
@@ -148,7 +148,7 @@ From the Ubuntu Client **Web Shell** browser tab, type or paste the following co
 
 In my example, my animal-name was **wanted-swan**. If you want to see the full HTML of the site you can **up arrow** and run the command again without the **\-\-head** flag.::
 
-    curl  http://[animal-name]-backend-vip-to-azure.lab-mcn.f5demos.com --resolve [animal-name]-backend-vip-to-azure.lab-mcn.f5demos.com:80:10.1.1.5
+    curl  http://<animal-name>-backend-vip-to-azure.lab-mcn.f5demos.com --resolve <animal-name>-backend-vip-to-azure.lab-mcn.f5demos.com:80:10.1.1.5
 
 |
 
@@ -183,7 +183,7 @@ In the **Side menu** under **Manage** click on **Load Balancers** >> **Origin Po
 ==================================      ==============
 Variable                                Value
 ==================================      ==============
-Name                                    [animal-name]-awstool-pool
+Name                                    <animal-name>-awstool-pool
 Origin Servers                          **Add Item** > See Below
 Origin Server Port                      8080
 ==================================      ==============
@@ -217,12 +217,12 @@ Enter the following values:
 ==================================      ==============
 Variable                                Value
 ==================================      ==============
-Name                                    [animal-name]-awstool
-Domains and LB Type                     [animal-name]-awstool.lab-mcn.f5demos.com
+Name                                    <animal-name>-awstool
+Domains and LB Type                     <animal-name>-awstool.lab-mcn.f5demos.com
 Load Balancer Type                      HTTP
 Automatically Manage DNS Records        **check** (Important!)
 HTTP Port                               80
-Origin Pools                            **Add Item** and select [animal-name-awstool-pool] and click **Apply**. 
+Origin Pools                            **Add Item** and select <animal-name>-awstool-pool and click **Apply**. 
 ==================================      ==============
 
 |
@@ -236,7 +236,7 @@ Click **Save and Exit**.
 
 You should now be able to access the new globally availalable tool by accessing the following URL with your animal-name: 
 
-http://[animal-name]-awstool.lab-mcn.f5demos.com
+http://<animal-name>-awstool.lab-mcn.f5demos.com
 
 |
 
@@ -259,12 +259,12 @@ Enter the following values:
 ==================================      ==============
 Variable                                Value
 ==================================      ==============
-Name                                    [animal-name]-aws-to-azure-lb
-Domains and LB Type                     [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com
+Name                                    <animal-name>-aws-to-azure-lb
+Domains and LB Type                     <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com
 Load Balancer Type                      HTTP
 Automatically Manage DNS Records        **uncheck**
 HTTP Port                               80
-Origin Pools                            **Add Item** and select [animal-name-azure-pool] and click **Apply**. 
+Origin Pools                            **Add Item** and select <animal-name>-azure-pool and click **Apply**. 
 VIP Advertisement (at bottom)           **Custom** Click **Configure** See Below. 
 ==================================      ==============
 
@@ -307,11 +307,11 @@ You now have a load balancer running in AWS on the inside interface of your AWS 
 
 We will now use the In-Container Diag tool to test connectivity.  
 
-If you don't already have a tab open to the Diag tool, in your browser go to: http://[animal-name]-awstool.lab-mcn.f5demos.com
+If you don't already have a tab open to the Diag tool, in your browser go to: http://<animal-name>-awstool.lab-mcn.f5demos.com
 
 Click on **Run Command** and paste in the following:: 
 
-    curl  http://[animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com --resolve [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
+    curl  http://<animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com --resolve <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
 
 |
 
@@ -324,7 +324,7 @@ In just a few moments, you now have full proxy connectivity between IP Overlappe
 
 Let's try that command again but with the shorthand version by using **\-\-head**::
 
-    curl --head  http://[animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com --resolve [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
+    curl --head  http://<animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com --resolve <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
 
 |
 
@@ -364,9 +364,9 @@ Back in XC Console, from the **Side menu** under **Security**, click on **Servic
 ==================================      ==============
 Variable                                Value
 ==================================      ==============
-Name                                    [animal-name]-allow-get-sp
+Name                                    <animal-name>-allow-get-sp
 Server Selection                        Server Name
-Server Name                             [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com
+Server Name                             <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com
 Select Policy Rules                     Custom Rule List
 Rules                                   **Configure**, Click **Add Item** > See Below:
 ==================================      ==============
@@ -379,7 +379,7 @@ Variable                                Value
 Name                                    allow-get
 Action                                  Allow
 Clients                                 Any Client
-Servers                                 **Add Item** >> **Exact Value** >> [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com
+Servers                                 **Add Item** >> **Exact Value** >> <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com
 HTTP Method/Method List                 Get
 HTTP Path                               **Configure** >> **Add Item** add **/** under **Prefix Values**. 
 ==================================      ==============
@@ -420,13 +420,13 @@ Click **Save and Exit**.
 Apply Service Policy
 ---------------------
 
-In the **Side menu** under **Manage** click on **Load Balancers** >> **HTTP Load Balancers** and then click the **3 Button** Action Menu >> **Manage Configuration** under your **[animal-name]-aws-to-azure-lb**.
+In the **Side menu** under **Manage** click on **Load Balancers** >> **HTTP Load Balancers** and then click the **3 Button** Action Menu >> **Manage Configuration** under your **<animal-name>-aws-to-azure-lb**.
 
 Click **Edit Configuration** and scroll down to **Common Security Controls**. 
 
 Under **Service Policies**, hit the dropdown and choose, **Apply Specified Service Policies** and then click the blue **Configure**.
 
-Choose your **[animal-name]-allow-get-sp** and click **Apply** and then **Save and Exit**. 
+Choose your **<animal-name>-allow-get-sp** and click **Apply** and then **Save and Exit**. 
 
 |
 
@@ -439,11 +439,11 @@ Choose your **[animal-name]-allow-get-sp** and click **Apply** and then **Save a
 Test Service Policy
 -------------------
 
-If you don't already have a tab open to the Diag tool, in your browser go to: http://[animal-name]-awstool.lab-mcn.f5demos.com
+If you don't already have a tab open to the Diag tool, in your browser go to: http://<animal-name>-awstool.lab-mcn.f5demos.com
 
 Try your curl command again **without** the **--head** flag.:: 
 
-    curl http://[animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com --resolve [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
+    curl http://<animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com --resolve <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
 
 
 |
@@ -455,7 +455,7 @@ Try your curl command again **without** the **--head** flag.::
 
 Now run the command again but insert the **\-\-head** command.::
 
-    curl --head  http://[animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com --resolve [animal-name]-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
+    curl --head  http://<animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com --resolve <animal-name>-aws-to-azure-lb.lab-mcn.f5demos.com:80:10.0.5.176
 
 |
 
@@ -471,7 +471,7 @@ You have now successfully configured an application layer **Service Policy** tha
 Review Service Policy Logs
 ---------------------------
 
-Back in XC Console, from the **Side menu** under **Virtual Hosts** click on **HTTP Load Balancers** and then click on your **[animal-name]-aws-to-azure-lb**.
+Back in XC Console, from the **Side menu** under **Virtual Hosts** click on **HTTP Load Balancers** and then click on your **<animal-name>-aws-to-azure-lb**.
 
 
 |
